@@ -1,6 +1,6 @@
 # Lecture 3: Rainfall
 
-{{travis_badge}} {{codecov_badge}}
+[![Travis CI status](https://travis-ci.com/nu-rust-course/rainfall-rs.svg?token=Ase2AYhgcqMDkdsyq9m2&branch=master)](https://travis-ci.com/nu-rust-course/rainfall-rs) [![Codecov.io status](https://codecov.io/gh/nu-rust-course/rainfall-rs/branch/master/graph/badge.svg?token=TmEme4t11y)](https://codecov.io/gh/nu-rust-course/rainfall-rs/branch/master)
 
 This is an implementation of [rainfall] in Rust. The design factors
 input, computation, and output into separate functions. Instead of

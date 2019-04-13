@@ -3,7 +3,7 @@ sudo: required
 dist: trusty
 
 env:
-  - CODECOV_TOKEN={{codecov_token}}
+  - CODECOV_TOKEN=eb918ac6-42c6-4716-a5b4-cd935cdccd8f
 
 services:
   - docker
