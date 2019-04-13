@@ -1,0 +1,35 @@
+language: rust
+sudo: required
+dist: trusty
+
+env:
+  - CODECOV_TOKEN={{codecov_token}}
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - libssl-dev
+
+cache: cargo
+
+rust:
+  - stable
+
+notifications:
+  email:
+    on_success: never
+
+script:
+  - cargo test --verbose
+
+after_success: |
+  docker run --security-opt seccomp=unconfined    \
+        -v "$(pwd):/volume"                       \
+        -v "$(pwd)/docker-target:/volume/target"  \
+        xd009642/tarpaulin                        \
+        cargo tarpaulin --out Xml
+  bash <(curl -s https://codecov.io/bash)         \
+    && echo "Uploaded code coverage report to codecov.io"
