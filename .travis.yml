@@ -3,7 +3,7 @@ sudo: required
 dist: trusty
 
 env:
-  - CODECOV_TOKEN=eb918ac6-42c6-4716-a5b4-cd935cdccd8f
+  - CODECOV_TOKEN="eb918ac6-42c6-4716-a5b4-cd935cdccd8f"
 
 services:
   - docker
@@ -13,23 +13,23 @@ addons:
     packages:
       - libssl-dev
 
-cache: cargo
-
 rust:
   - stable
 
-notifications:
-  email:
-    on_success: never
+cache: cargo
+
+before_script:
+  - rustup component add clippy
 
 script:
-  - cargo test --verbose
+  - cargo build --verbose
+  - cargo clippy --all-targets
+  - cargo test
 
 after_success: |
   docker run --security-opt seccomp=unconfined    \
         -v "$(pwd):/volume"                       \
-        -v "$(pwd)/docker-target:/volume/target"  \
         xd009642/tarpaulin                        \
         cargo tarpaulin --out Xml
-  bash <(curl -s https://codecov.io/bash)         \
-    && echo "Uploaded code coverage report to codecov.io"
+  bash <(curl -s https://codecov.io/bash) &&
+    echo "Uploaded code coverage report to codecov.io"
