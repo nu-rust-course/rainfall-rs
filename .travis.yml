@@ -22,7 +22,7 @@ before_script:
   - rustup component add clippy
 
 script:
-  - cargo build --verbose
+  - cargo build
   - cargo clippy --all-targets
   - cargo test
 
