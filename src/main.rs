@@ -1,4 +1,4 @@
-/**!
+/*!
  * rainfall
  *
  * Reads a sequence of rainfall measurements from the standard input and
@@ -52,6 +52,7 @@
  *  - If there are no measurements to read then there is no mean value
  *    to print, so we will print an explanatory message instead.
  */
+#![allow(clippy::float_cmp)]
 
 use std::io::{self, BufRead, BufReader, Read, Write};
 
